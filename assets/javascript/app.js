@@ -22,7 +22,7 @@
 		},
 		{
 			"answer": "Will Ferrell and Rachel Dratch",
-			"question": "Which duo played the overly sexually married lovers, Roger and Virginia Klarvin? Hint: Their most famous scene was in a hot tub",
+			"question": "Which duo played the overly sexually married lovers, Roger and Virginia Klarvin? Hint: Their most famous scene was in a hot tub...",
 			"options": ["Will Ferrell and Rachel Dratch", "Fred Armisen and Tina Fey", "Darrell Hammond and Amy Poelher", "Jason Sudeikis and Abby Elliott"]
 		},
 		{

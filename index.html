@@ -6,41 +6,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!--Linking reset CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!--Linking Google Font - Roboto-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--Linking Google Font - Roboto & Muli-->
+    <link href="https://fonts.googleapis.com/css?family=Muli|Roboto" rel="stylesheet">
     <!--My CSS Stylesheet-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!--Font Awesome Stylesheet-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <title>Trivia Game</title>
+    <title>SNL Trivia Game</title>
 </head>
 <body>
-	<div class="row wrapper text-center"><!--Start of Wrapper-->
-		<header class="row"><!--Header-->
-			<div class="col-md-2"></div>
-			<div class="col-md-8 text-center">
+	<div class="wrapper text-center"><!--Start of Wrapper-->
+		<img src="assets/images/header.png" class="logo">
+		<section class="question-box"><!--Start of Question Box-->
+			<header> <!--Start of Header-->
 				<p class="title">SATURDAY NIGHT LIVE TRIVIA</p>
-			</div>
-			<div class="col-md-2"></div>
-		</header><!--End of Header-->
-		<section class="row question-box"><!--Start of Question Box-->
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8 ">
-					<h2 id="timer"></h2>
-					<button type="button" id="start-button">Start</button>
-					<button type="button" class="hide" id="reset-button">Try Again</button>
-					<h3 class="question hide"></h3>
-					<ul id="answers">
-						<li class="answers hide" id="answer0"></li>
-						<li class="answers hide" id="answer1"></li>
-						<li class="answers hide" id="answer2"></li>
-						<li class="answers hide" id="answer3"></li>
-					</ul>
-				</div>
-				<div class="col-md-2"></div> 
+			</header><!--End of Header-->
+			<div class="main-content">				
+				<h2 id="timer"></h2>
+				<h2 id="start-button">Start</h2>
+				<h2 class="hide" id="reset-button">Try Again</h2>
+				<h3 class="question hide"></h3>
+				<ul id="answers">
+					<li class="answers hide" id="answer0"></li>
+					<li class="answers hide" id="answer1"></li>
+					<li class="answers hide" id="answer2"></li>
+					<li class="answers hide" id="answer3"></li>
+				</ul> 
 			</div>
 		</section><!--End of Question Box-->
 	</div><!--End of overall wrapper-->
