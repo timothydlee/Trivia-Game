@@ -15,42 +15,50 @@ $(document).ready(function(){
 		{
 			"answer": "Christopher Walken",
 			"question": "Which multiple-time host had the famous need for more cowbell?",
-			"options": ["Alec Baldwin", "Steve Martin", "Tom Hanks","Christopher Walken"]
+			"options": ["Alec Baldwin", "Steve Martin", "Tom Hanks","Christopher Walken"],
+			"gif": "assets/images/cowbell.gif"
 		},
 		{
 			"answer": "Kate McKinnon",
 			"question": "Which cast member received fame for her impressions of Justin Bieber and Hillary Clinton?",
-			"options": ["Tina Fey", "Kate McKinnon", "Vanessa Bayer", "Amy Poehler", ]
+			"options": ["Tina Fey", "Kate McKinnon", "Vanessa Bayer", "Amy Poehler", ],
+			"gif": "assets/images/bieber.gif"
 		},
 		{
 			"answer": "Will Ferrell and Rachel Dratch",
 			"question": "Which duo played the overly sexually married lovers, Roger and Virginia Klarvin? Hint: Their most famous scene was in a hot tub...",
-			"options": ["Will Ferrell and Rachel Dratch", "Fred Armisen and Tina Fey", "Darrell Hammond and Amy Poelher", "Jason Sudeikis and Abby Elliott"]
+			"options": ["Will Ferrell and Rachel Dratch", "Fred Armisen and Tina Fey", "Darrell Hammond and Amy Poelher", "Jason Sudeikis and Abby Elliott"],
+			"gif": "assets/images/klarvin.gif"
 		},
 		{
 			"answer": "Darrell Hammond",
 			"question": "Which cast member played Sean Connery as Will Ferrell's nemesis in Celebrity Jeopardy?",
-			"options": ["Jimmy Fallon", "Jim Breuer", "David Spade", "Darrell Hammond"]
+			"options": ["Jimmy Fallon", "Jim Breuer", "David Spade", "Darrell Hammond"],
+			"gif": "assets/images/connery.gif"
 		},
 		{
 			"answer": "Chris Parnell",
 			"question": "Who is Andy Samberg's rapping counterpart in the Digital Short - Lazy Sunday, a song about the Chronicles of Narnia?",
-			"options": ["Chris Parnell", "Tracy Morgan", "Horatio Sanz",  "Seth Meyers"]
+			"options": ["Chris Parnell", "Tracy Morgan", "Horatio Sanz",  "Seth Meyers"],
+			"gif": "assets/images/lazy.gif"
 		},
 		{
 			"answer": "Spartans",
 			"question": "In the recurring skit of bumbling male and female high school cheerleaders, Will Ferrell and Cheri Oteri cheer for what team  mascot?",
-			"options": ["Tigers", "Warriors", "Spartans", "Deers"]
+			"options": ["Tigers", "Warriors", "Spartans", "Deers"],
+			"gif": "assets/images/spartans.gif"
 		},
 		{
 			"answer": "In a van down by the river",
 			"question": "Where does Chris Farley's character, Matt Foley, the motivational speaker, live?",
-			"options": ["200 miles away", "Down the street", "1601 Pennsylvania Avenue", "In a van down by the river"]
+			"options": ["200 miles away", "Down the street", "1601 Pennsylvania Avenue", "In a van down by the river"],
+			"gif": "assets/images/mattfoley.gif"
 		},
 		{
 			"answer": "MacGruber",
 			"question": "What character did Will Forte spin off to its own full length feature film?",
-			"options": ["MacGruber", "Tim Calhoun", "Jeff Montgomery, sex offender", "George Bush"]
+			"options": ["MacGruber", "Tim Calhoun", "Jeff Montgomery, sex offender", "George Bush"],
+			"gif": "assets/images/macgruber.gif"
 		}
 	];
 
@@ -83,6 +91,8 @@ $(document).ready(function(){
 		counter = setInterval(myTimer, 1000);
 		//Displays the question at the same index position as the gameCounter's value
 		$(".question").html(questions[gameCounter].question);
+		//Replaces gif with title
+		$(".title").html("SATURDAY NIGHT LIVE TRIVIA");
 		//Dynamically generates the answer choices for each question, setting an
 		//attribute of data-name equal to the string contained in the option that is being generated.
 		for (var i=0; i<questions[gameCounter].options.length; i++){
@@ -98,6 +108,8 @@ $(document).ready(function(){
 		$(".question").html("The correct answer is " + questions[gameCounter].answer + "!");
 		//Empties the answer choices
 		$(".answers").empty();
+		//Replaces title with gif of the correct answer
+		$(".title").html("<img class='gif' src='" + questions[gameCounter].gif + "'/>");
 		//Boolean set to its default - meant to be the condition to check whether or not any answer has been selected has been made
 		answeredYet = false;
 	};

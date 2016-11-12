@@ -18,6 +18,16 @@ body{
   right: 0;
 }
 
+/*Lights image in background*/
+.lights{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  max-width: 77%;
+  height: 100%;
+}
+
 /*Class used to manipulate DOM*/
 .hide{
   display: none;
@@ -34,7 +44,7 @@ body{
   padding: 50px;
   margin: 7% 25% 5% 25%;
   background-color: black;
-  opacity: 0.6;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,6 +79,10 @@ body{
   position: absolute;
   left: 50px;
   top: 35%;
+}
+
+*.gif{
+  opacity: 1.0;
 }
 
 .answers{
