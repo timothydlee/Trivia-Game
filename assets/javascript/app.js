@@ -76,12 +76,11 @@
 	}
 
 	var displayQuestion = function(){
-		console.log("displayQuestion: " + questions[gameCounter].question);
+		counter = setInterval(myTimer, 1000);
 		$(".question").html(questions[gameCounter].question);
 		for (var i=0; i<questions[gameCounter].options.length; i++){
 			$("#answer" + i).attr("data-name", questions[gameCounter].options[i]).html(questions[gameCounter].options[i]);
 		}
-		counter = setInterval(myTimer, 1000);
 	}
 
 	var displayAnswer = function(){
@@ -89,22 +88,26 @@
 		rightOrWrongDisplay();
 		$(".question").html("The correct answer is " + questions[gameCounter].answer + "!");
 		$(".answers").empty();
-
+		answeredYet = false;
 	}
 
 	var displayScore = function(){
 		console.log("We made it to the end!");
-		$(".question").html("Game Over! You got " + correct + " questions correct!");;
+		$("#timer").empty();
+		var unanswered = (questions.length - incorrect - correct);
+		$(".question").html("<p> Game Over!</p>" + "<p> Correct: " + correct + "</p><p>Incorrect: " + incorrect +"</p>" + "<p>Unanswered: " + unanswered + "</p>");
 		$(".answers").empty();
+		$("#reset-button").removeClass("hide");
 	}
 
 
 	function myTimer() {
 		$("#timer").html(timerQ--);
-		if (timerQ===-1){
+		if (timerQ===-1||answeredYet===true){
 			stop();
 			displayAnswer();
 			gameCounter++;
+			rightOrWrong = false;
 			setTimeout(game, timerA*1000);
 		}	
 	 };
@@ -128,8 +131,28 @@
 
     function rightOrWrongDisplay(){
     	if (rightOrWrong===true){
-    		$("#timer").html("You are correct!");
+    		$("#timer").html("Correct!");
     	} else {
-    		$("#timer").html("You are wrong, dummy!");
+    		$("#timer").html("Wrong, dummy!");
     	}
     };
+
+    function reset(){
+    	correct = 0;
+		incorrect = 0;
+		timerQ = 10;
+		timerA = 3; 
+		gameCounter = 0;
+		counter; 
+		rightOrWrong;
+		answeredYet = false;
+		$("#reset-button").addClass("hide");
+		$(".answers").removeClass("hide");
+		$(".question").removeClass("hide");
+		myTimer();
+		game();
+    }
+
+    $("#reset-button").on("click", function(){
+    	reset();
+    });
