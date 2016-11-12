@@ -1,14 +1,16 @@
+$(document).ready(function(){
+
 	/*Global Variables*/
-	var correct = 0;
-	var incorrect = 0;
+	var correct = 0;//Counter to keep track of correct answers
+	var incorrect = 0;//Counter to keep track of incorrect answers
 	var timerQ = 10; //For timer that decrements every second, visually for user
 	var timerA = 3; //For setTimeout
 	var gameCounter = 0; //For keeping track of which question user sees
 	var counter; //For set interval
-	var rightOrWrong;
-	var answeredYet = false;
+	var rightOrWrong; //Boolean that keeps track of whether the selected answer is correct or not
+	var answeredYet = false; //Boolean that keeps track of whether or not a user has selected an answer to move forward
 
-	//Object that contains questions/answers*//
+	//Object that contains questions/answers//
 	var questions = [
 		{
 			"answer": "Christopher Walken",
@@ -52,83 +54,115 @@
 		}
 	];
 
+	//Start button - upon click, removes start button, displays question and multiple 
+	//choice answers and enters into game function	
 	$("#start-button").on("click", function(){
-		$(this).addClass("hide");
-		$(".answers").removeClass("hide");
-		$(".question").removeClass("hide");
-		myTimer();
-		game();
+		$(this).addClass("hide"); //Hides start button
+		$(".answers").removeClass("hide"); //Removes class that hides this element
+		$(".question").removeClass("hide"); //Removes class that hides this element
+		myTimer(); //Starts timer
+		game();//Game function begins
 	});
 
-	var test = function(){
-		console.log("Test");
-	}
-
+	//Recursive function that handles skeleton of the game operation
 	var game = function(){
-		console.log(gameCounter);
+		//End scenario - only displays score when game counter is the same value as the 
+		//length of the questions array (ie runs through all the questions)
 		if (gameCounter===questions.length){
 			displayScore();
 			return false;
 		} else {
+			//Unless game has ended, display the question
 			displayQuestion();
-			console.log("After set interval");
 		}
-	}
+	};
 
+	//Display the question function
 	var displayQuestion = function(){
+		//Setting an interval that calls myTimer function every 1 second
 		counter = setInterval(myTimer, 1000);
+		//Displays the question at the same index position as the gameCounter's value
 		$(".question").html(questions[gameCounter].question);
+		//Dynamically generates the answer choices for each question, setting an
+		//attribute of data-name equal to the string contained in the option that is being generated.
 		for (var i=0; i<questions[gameCounter].options.length; i++){
 			$("#answer" + i).attr("data-name", questions[gameCounter].options[i]).html(questions[gameCounter].options[i]);
 		}
-	}
+	};
 
+	//Display answer function after either time runs out or the user selects an answer
 	var displayAnswer = function(){
-		console.log("displayAnswer: " + questions[gameCounter].options[questions[gameCounter].answer]);
+		//Displays whether or not the answer is correct by referencing this function
 		rightOrWrongDisplay();
+		//Informs the user of the correct answer
 		$(".question").html("The correct answer is " + questions[gameCounter].answer + "!");
+		//Empties the answer choices
 		$(".answers").empty();
+		//Boolean set to its default - meant to be the condition to check whether or not any answer has been selected has been made
 		answeredYet = false;
-	}
+	};
 
+	//Displays score when all questions have been rendered
 	var displayScore = function(){
-		console.log("We made it to the end!");
+		//Empties #timer div where timer was displaying
 		$("#timer").empty();
+		//Setting a variable to hold the unanswered questions
 		var unanswered = (questions.length - incorrect - correct);
+		//Displays right, wrong and unanswered question stats
 		$(".question").html("<p> Game Over!</p>" + "<p> Correct: " + correct + "</p><p>Incorrect: " + incorrect +"</p>" + "<p>Unanswered: " + unanswered + "</p>");
+		//Empties answer choices area for aesthetics.
 		$(".answers").empty();
+		//Allowing reset button to be displayed
 		$("#reset-button").removeClass("hide");
-	}
+	};
 
 
+	//Timer function that also made game proceed between questions and answers
 	function myTimer() {
 		$("#timer").html(timerQ--);
+		//Set condition to -1 because the clock was resetting 1 second too early despite logic. Also it checks if any answere has been chosen.
 		if (timerQ===-1||answeredYet===true){
+			//Stop the counter
 			stop();
+			//Once the timer is 0 or the user selects an answer, the timer stops, and the answer is displayed
 			displayAnswer();
+			//Increments gameCounter to move on to the next question
 			gameCounter++;
+			//Resetting rightOrWrong
 			rightOrWrong = false;
+			//The displayAnswer page will display for 3 seconds before timing out and entering back into the game function again.
 			setTimeout(game, timerA*1000);
 		}	
 	 };
-	  
+	 
+	//Stops the interval 
     function stop(){
     	clearInterval(counter);
+    	//resets timerQ to 10 (seconds);
     	timerQ=10;
     };
 
+    //When an answer is selected, regardless of the correctness of the answer, this happens:
     $(".answers").on("click", function(){
+    	//Chosen answer gets assigned the attribute data-name which corresponds with the answer
+    	//choices as done in the dyanmic generation of the list of options 
     	var chosenAnswer = ($(this).attr("data-name")); 
+    	//If the user's chosen answer equals the string of the correct answer, then rightorwrong is true.
     	if (chosenAnswer === questions[gameCounter].answer){
     		rightOrWrong = true;
+    		//Increments correct answers
     		correct++;
+    	//Otherwise, it's wrong
     	} else {
     		rightOrWrong = false;
+    		//Incorrect counter increments
     		incorrect++;
     	}
+    	//Resetting the value to be reused.
     	answeredYet = true;
     });
 
+    //Displays whether the answer selcted was correct.
     function rightOrWrongDisplay(){
     	if (rightOrWrong===true){
     		$("#timer").html("Correct!");
@@ -137,6 +171,7 @@
     	}
     };
 
+    //Resets game
     function reset(){
     	correct = 0;
 		incorrect = 0;
@@ -151,8 +186,10 @@
 		$(".question").removeClass("hide");
 		myTimer();
 		game();
-    }
-
+    };
+    //Action that handles the click function on the reset button
+    //Calls reset function that clears the game and starts over.
     $("#reset-button").on("click", function(){
     	reset();
     });
+});

@@ -6,38 +6,21 @@
 ************************/
 body{
   background-color: #081b29;
-  /*background-color: white;*/
   font-family: 'Muli', sans-serif;
   font-size: 16px;
   color: white;
 }
 
+/*SNL logo in background*/
 .logo{
   position: fixed;
   top: 0;
   right: 0;
 }
 
+/*Class used to manipulate DOM*/
 .hide{
   display: none;
-}
-
-/************************
-
-          HEADER
-
-************************/
-.title{
-  font-family: 'Roboto', sans-serif;
-  font-weight: 800;
-  margin: 0 auto;
-  font-size: 5em;  
-  text-align: center top;
-  color: white;
-  max-width: 50%;
-  position: absolute;
-  left: 50px;
-  top: 35%;
 }
 
 /************************
@@ -75,6 +58,19 @@ body{
   font-weight: bold;
 }
 
+.title{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  margin: 0 auto;
+  font-size: 5em;  
+  text-align: center top;
+  color: white;
+  max-width: 50%;
+  position: absolute;
+  left: 50px;
+  top: 35%;
+}
+
 .answers{
   border: black solid 2px;
 }
@@ -90,8 +86,3 @@ body{
 #reset-button:hover{
   background-color: gray;
 }
-/************************
-
-          IMAGES
-
-************************/
