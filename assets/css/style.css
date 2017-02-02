@@ -91,10 +91,12 @@ body{
 
 .answers:hover{
   background-color: gray; 
+  cursor: pointer;
 }
 
 #start-button:hover{
   background-color: gray;
+  cursor: pointer;
 }
 
 #reset-button:hover{
